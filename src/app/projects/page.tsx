@@ -7,7 +7,11 @@ import { motion, Variants } from "framer-motion";
 import { Zap, Building2, ShieldCheck, Headset } from "lucide-react";
 import { PageExtras } from "@/components/sections/PageExtras";
 import { AnimatedHeroTitle } from "@/components/ui/AnimatedHeroTitle";
+import { Carousel } from "@/components/ui/Carousel";
+import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
 import styles from "./page.module.css";
+
+const heroSlides = ["/hero/banner_new_1.png", "/hero/banner_new_2.png", "/hero/banner_new_3.png"];
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -49,6 +53,7 @@ export default function ProjectsPage() {
     <main className={styles.page}>
       {/* HERO */}
       <section className={styles.hero}>
+        <HeroSlideshow images={heroSlides} overlay={null} priority />
         <div className={styles.heroOverlay} />
         <div className={styles.heroContainer}>
           <motion.div className={styles.heroContent} initial="hidden" animate="visible" variants={fadeUp}>
@@ -108,12 +113,8 @@ export default function ProjectsPage() {
           <motion.h2 className={styles.sectionTitle} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             On-site installations
           </motion.h2>
-          <motion.div className={styles.photosGrid} variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }}>
-            {sitePhotos.map((src, i) => (
-              <motion.div key={i} className={styles.photoCard} variants={fadeUp}>
-                <Image src={src} alt={`CITA EV installation ${i + 1}`} fill className={styles.photoImg} unoptimized />
-              </motion.div>
-            ))}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={fadeUp}>
+            <Carousel images={sitePhotos} perView={3} alt="CITA EV installation" />
           </motion.div>
         </div>
       </section>

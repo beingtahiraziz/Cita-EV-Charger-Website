@@ -6,7 +6,10 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { PageExtras } from "@/components/sections/PageExtras";
 import { AnimatedHeroTitle } from "@/components/ui/AnimatedHeroTitle";
+import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
 import styles from "./page.module.css";
+
+const heroSlides = ["/hero/banner_new_1.png", "/hero/banner_new_2.png", "/hero/banner_new_3.png"];
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -23,6 +26,7 @@ export default function ContactPage() {
     <main className={styles.page}>
       {/* HERO */}
       <section className={styles.hero}>
+        <HeroSlideshow images={heroSlides} overlay={null} priority />
         <div className={styles.heroOverlay} />
         <div className={styles.heroContainer}>
           <motion.div className={styles.heroContent} initial="hidden" animate="visible" variants={fadeUp}>

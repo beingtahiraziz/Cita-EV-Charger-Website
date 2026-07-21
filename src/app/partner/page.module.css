@@ -60,8 +60,187 @@
 .heroSubtitle {
   font-size: 1.25rem;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   line-height: 1.6;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: #00D46A;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+}
+
+.heroCta {
+  display: inline-block;
+  padding: 15px 34px;
+  background: #00D46A;
+  color: #ffffff;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 600;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(0, 212, 106, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.heroCta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 212, 106, 0.42);
+}
+
+/* Partner gallery carousel */
+.gallerySection {
+  padding: 90px 5%;
+  background: var(--background-white);
+}
+
+.gallerySectionInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* What we offer */
+.offerRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 44px;
+  text-align: left;
+}
+
+.offerCard {
+  background: #eefaf2;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 32px;
+  transition: all 0.3s ease;
+}
+
+.offerCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 212, 106, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 212, 106, 0.1);
+}
+
+.offerIcon {
+  color: #00D46A;
+  margin-bottom: 14px;
+}
+
+.offerCard h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.offerCard p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.benefitText {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* Steps */
+.stepsSection {
+  padding: 100px 5%;
+  background: var(--background-white);
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-top: 56px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stepCard {
+  position: relative;
+  background: #eefaf2;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 40px 24px 28px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stepCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 212, 106, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 212, 106, 0.12);
+}
+
+.stepNumber {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #00D46A;
+  color: #ffffff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(0, 212, 106, 0.35);
+}
+
+.stepIcon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  border-radius: 16px;
+  background: rgba(0, 212, 106, 0.1);
+  color: #00D46A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepCard h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.stepCard p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.blueCompany {
+  color: #0057B8;
+  font-weight: 800;
+}
+
+.formFootnote {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #00A050;
+}
+
+@media (max-width: 768px) {
+  .offerRow {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Quick Form in Hero */

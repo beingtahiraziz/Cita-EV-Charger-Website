@@ -7,7 +7,10 @@ import { motion, Variants } from "framer-motion";
 import { ArrowRight, Zap } from "lucide-react";
 import { productsData, ProductData } from "@/data/products";
 import { AnimatedHeroTitle } from "@/components/ui/AnimatedHeroTitle";
+import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
 import styles from "./page.module.css";
+
+const heroSlides = ["/hero/banner_new_1.png", "/hero/banner_new_2.png", "/hero/banner_new_3.png"];
 
 const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -74,6 +77,7 @@ export default function ProductsPage() {
     <main className={styles.page}>
       {/* HERO */}
       <section className={styles.hero}>
+        <HeroSlideshow images={heroSlides} overlay={null} priority />
         <div className={styles.heroOverlay} />
         <div className={styles.heroContainer}>
           <motion.div

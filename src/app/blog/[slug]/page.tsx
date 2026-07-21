@@ -1,8 +1,14 @@
 import { use } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getBlogBySlug } from "@/data/blog";
+import { getBlogBySlug, blogPosts } from "@/data/blog";
 import { BlogArticle } from "@/components/blog/BlogArticle";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return blogPosts.map((p) => ({ slug: p.slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

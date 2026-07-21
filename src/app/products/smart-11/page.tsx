@@ -1,8 +1,14 @@
-import { redirect } from "next/navigation";
+"use client";
 
-// Smart 11 has been removed from the catalog.
-// This route redirects to the products index so no build/runtime error occurs.
-// To fully remove it, delete this folder locally: `git rm -r src/app/products/smart-11`
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+// Smart 11 has been removed from the catalog. Client-side redirect keeps this
+// compatible with static export (server redirect() is not allowed with output: export).
 export default function Page() {
-  redirect("/products");
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/products");
+  }, [router]);
+  return null;
 }

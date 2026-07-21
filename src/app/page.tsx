@@ -4,10 +4,13 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, Variants } from "framer-motion";
 import { ArrowRight, ShieldCheck, Zap, Server, Globe2, BatteryCharging, ChevronRight, Activity, MapPin, Award, CheckCircle, Clock, BarChart2, Calendar } from 'lucide-react';
 import { Button } from "@/components/ui/Button";
+import { Carousel } from "@/components/ui/Carousel";
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { FiHome, FiBriefcase, FiShoppingBag, FiCoffee, FiTruck, FiGlobe, FiCheckCircle } from "react-icons/fi";
+
+const partnerImages = Array.from({ length: 8 }, (_, i) => `/images/Become%20partner/1%20(${i + 1}).jpeg`);
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -535,6 +538,9 @@ export default function Home() {
             <h2>Become an Authorized Partner</h2>
             <p>Join the CITA EV partner network in Pakistan. Access exclusive wholesale pricing, comprehensive technical training, and priority local support.</p>
             <Button variant="primary" size="lg" href="/partner">Apply For Partnership</Button>
+          </motion.div>
+          <motion.div style={{ marginTop: "3rem" }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
+            <Carousel images={partnerImages} perView={3} alt="CITA EV partner location" />
           </motion.div>
         </div>
       </section>

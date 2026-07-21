@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { Check, X, ArrowRight, Smartphone, Award, Nfc, Plug, AlertTriangle, Zap, Activity, Server, Wifi, Sun, Shield, ChevronDown, ChevronUp } from "lucide-react";
 import type { ProductData } from "@/data/products";
 import { AnimatedHeroTitle } from "@/components/ui/AnimatedHeroTitle";
+import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
+import { Lightbox } from "@/components/ui/Lightbox";
 import styles from "./ProductDetail.module.css";
 
 const fadeUp = {
@@ -19,6 +21,15 @@ export function ProductDetail({ product }: { product: ProductData }) {
   const [selectedDatasheetUrl, setSelectedDatasheetUrl] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedApp, setSelectedApp] = useState<string | null>(null);
+  const [galleryLightbox, setGalleryLightbox] = useState<number | null>(null);
+
+  // Hero background carousel from the product's own images (installed photo first).
+  const gallery = product.gallery ?? [];
+  const installedShots = gallery.filter((g) => /install/i.test(g.label)).map((g) => g.src);
+  const otherShots = gallery.filter((g) => !/install/i.test(g.label)).map((g) => g.src);
+  const heroImages = [...installedShots, ...otherShots];
+  if (heroImages.length === 0) heroImages.push(product.heroImageUrl || product.imageUrl);
+  const galleryImages = gallery.map((g) => g.src);
 
   const handleDownloadClick = (e: React.MouseEvent, modelName: string, url: string = "") => {
     e.preventDefault();
@@ -73,7 +84,12 @@ export function ProductDetail({ product }: { product: ProductData }) {
     <main className={styles.page}>
 
       {/* 1. Full Width Hero Section */}
-      <section className={styles.hero} style={{ backgroundImage: `linear-gradient(to right, rgba(5,11,20,0.95) 0%, rgba(5,11,20,0.72) 55%, rgba(5,11,20,0.55) 100%), url("/images/hero_bg.jpg")` }}>
+      <section className={styles.hero}>
+        <HeroSlideshow
+          images={heroImages}
+          overlay="linear-gradient(to right, rgba(5,11,20,0.9) 0%, rgba(5,11,20,0.7) 55%, rgba(5,11,20,0.5) 100%)"
+          priority
+        />
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
             <AnimatedHeroTitle text={product.name.toUpperCase()} className={styles.productName} />
@@ -134,12 +150,12 @@ export function ProductDetail({ product }: { product: ProductData }) {
           </motion.h2>
           <motion.div className={styles.galleryGrid} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={fadeUp}>
             {product.gallery.map((g, i) => (
-              <div key={i} className={styles.galleryCard}>
+              <button key={i} type="button" className={styles.galleryCard} onClick={() => setGalleryLightbox(i)}>
                 <div className={styles.galleryImgWrap}>
                   <Image src={g.src} alt={`${product.name} - ${g.label}`} fill className={styles.galleryImg} unoptimized />
                 </div>
                 <span className={styles.galleryLabel}>{g.label}</span>
-              </div>
+              </button>
             ))}
           </motion.div>
         </section>
@@ -436,6 +452,15 @@ export function ProductDetail({ product }: { product: ProductData }) {
           </div>
         </div>
       )}
+
+      {/* GALLERY LIGHTBOX */}
+      <Lightbox
+        images={galleryImages}
+        index={galleryLightbox}
+        onClose={() => setGalleryLightbox(null)}
+        onChange={setGalleryLightbox}
+        alt={product.name}
+      />
 
     </main>
   );

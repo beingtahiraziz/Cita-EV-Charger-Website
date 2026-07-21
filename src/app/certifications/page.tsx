@@ -4,7 +4,10 @@ import React, { useState } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Download, ShieldCheck, Award } from "lucide-react";
 import { AnimatedHeroTitle } from "@/components/ui/AnimatedHeroTitle";
+import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
 import styles from "./page.module.css";
+
+const heroSlides = ["/hero/banner_new_1.png", "/hero/banner_new_2.png", "/hero/banner_new_3.png"];
 
 const certifications = [
   { badge: "CE CERTIFIED", title: "CE Certification", desc: "European conformity standards for health, safety and environmental protection." },
@@ -36,6 +39,7 @@ export default function CertificationsPage() {
 
       {/* HERO */}
       <section className={styles.hero}>
+        <HeroSlideshow images={heroSlides} priority />
         <motion.div className={styles.heroContainer} initial="hidden" animate="visible" variants={fadeUp}>
           <AnimatedHeroTitle text="Certified Technology You Can Trust" className={styles.heroTitle} />
           <p className={styles.heroSubtitle}>

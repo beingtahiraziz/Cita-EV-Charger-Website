@@ -1031,7 +1031,7 @@
 }
 
 .faqItem {
-  background: var(--background-white);
+  background: #eefaf2;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);

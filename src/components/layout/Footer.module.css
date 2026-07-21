@@ -3,6 +3,7 @@
   color: #FFFFFF;
   padding: var(--spacing-xl) 0 var(--spacing-md);
   font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
 }
 
 .container {
@@ -16,6 +17,16 @@
   grid-template-columns: 1fr;
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding: var(--spacing-lg) 0 var(--spacing-sm);
+  }
+  .grid {
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
 }
 
 @media (min-width: 768px) {

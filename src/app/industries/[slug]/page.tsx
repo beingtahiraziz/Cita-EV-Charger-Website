@@ -1,8 +1,14 @@
 import { use } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getIndustryBySlug } from "@/data/industries";
+import { getIndustryBySlug, industries } from "@/data/industries";
 import { IndustryDetail } from "@/components/industries/IndustryDetail";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return industries.map((i) => ({ slug: i.slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

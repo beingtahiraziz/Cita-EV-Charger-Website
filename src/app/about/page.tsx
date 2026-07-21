@@ -17,7 +17,11 @@ import {
 } from "lucide-react";
 import { PageExtras } from "@/components/sections/PageExtras";
 import { AnimatedHeroTitle } from "@/components/ui/AnimatedHeroTitle";
+import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
+import { Carousel } from "@/components/ui/Carousel";
 import styles from "./page.module.css";
+
+const aboutImages = Array.from({ length: 6 }, (_, i) => `/images/About/about%20(${i + 1}).jpeg`);
 
 const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -132,6 +136,7 @@ export default function AboutPage() {
     <main className={styles.page}>
       {/* 1. HERO */}
       <section className={styles.hero}>
+        <HeroSlideshow images={aboutImages} overlay={null} priority />
         <div className={styles.heroOverlay} />
         <div className={styles.heroContainer}>
           <motion.div
@@ -141,10 +146,11 @@ export default function AboutPage() {
             variants={fadeUpVariant}
           >
             <span className={styles.eyebrow}>About CITA EV</span>
-            <AnimatedHeroTitle text="Powering a Greener Future" className={styles.heroTitle} />
+            <AnimatedHeroTitle text="Powering Pakistan's EV Future" className={styles.heroTitle} />
             <p className={styles.heroSubtitle}>
-              Driving the electrification of mobility across Pakistan through
-              innovative, intelligent EV charging solutions.
+              BlueOcean and CITA EV are driving the transition toward sustainable
+              transportation through innovative EV charging infrastructure, smart
+              energy solutions, and strategic partnerships.
             </p>
           </motion.div>
         </div>
@@ -169,6 +175,24 @@ export default function AboutPage() {
             charger provider &mdash; we are your trusted partner in the
             transition to cleaner, greener transportation.
           </p>
+        </motion.div>
+      </section>
+
+      {/* 2b. HEADQUARTERS & WORKPLACE GALLERY */}
+      <section className={styles.galleryCarouselSection}>
+        <motion.div
+          className={styles.galleryCarouselInner}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUpVariant}
+        >
+          <h2 className={styles.sectionTitle}>Inside CITA EV &amp; BlueOcean</h2>
+          <p className={styles.sectionSubtitle} style={{ maxWidth: "760px", margin: "0 auto 40px" }}>
+            A look at our corporate headquarters at High-Q Tower and the workspace powering our EV
+            charging initiatives across Pakistan.
+          </p>
+          <Carousel images={aboutImages} perView={3} alt="CITA EV headquarters" />
         </motion.div>
       </section>
 

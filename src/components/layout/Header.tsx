@@ -56,11 +56,11 @@ export const Header = () => {
         {/* Logo */}
         <Link href="/" className={styles.logo}>
           <Image
-            src="/logos/CITA-EV-Logo-Green.png"
+            src="/images/logo.png"
             alt="CITA EV"
-            width={180}
-            height={50}
-            style={{ objectFit: "contain" }}
+            width={200}
+            height={56}
+            style={{ objectFit: "contain", height: "auto" }}
             priority
           />
         </Link>
@@ -94,7 +94,7 @@ export const Header = () => {
 
         {/* Desktop Actions */}
         <div className={styles.actions}>
-          <Button variant={scrolled ? "outline" : "outlineWhite"} href="https://wa.me/923007929616">
+          <Button variant="outlineWhite" href="https://wa.me/923007929616">
             WhatsApp
           </Button>
           <Button variant="primary" href="/contact">

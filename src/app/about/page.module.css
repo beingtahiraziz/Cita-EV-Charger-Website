@@ -107,6 +107,17 @@
   text-align: center;
 }
 
+.galleryCarouselSection {
+  padding: 40px 5% 90px;
+  background: var(--background-white);
+}
+
+.galleryCarouselInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 /* 3. MISSION & VISION */
 .mvSection {
   padding: 40px 5% 100px;

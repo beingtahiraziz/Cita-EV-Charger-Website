@@ -2,9 +2,13 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { ShieldCheck, TrendingUp, Users, Target, BookOpen, Headset, Briefcase, Award } from "lucide-react";
+import { TrendingUp, Users, Wrench, Megaphone, LineChart, Zap, BatteryCharging, ClipboardList, MapPinned, CheckCircle2, Rocket, LifeBuoy } from "lucide-react";
 import { AnimatedHeroTitle } from "@/components/ui/AnimatedHeroTitle";
+import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
+import { Carousel } from "@/components/ui/Carousel";
 import styles from "./page.module.css";
+
+const partnerImages = Array.from({ length: 8 }, (_, i) => `/images/Become%20partner/1%20(${i + 1}).jpeg`);
 
 export default function PartnerPage() {
   const fadeUpVariant: Variants = {
@@ -14,54 +18,55 @@ export default function PartnerPage() {
 
   const staggerContainer: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
   };
 
   const benefits = [
-    { icon: <Award size={32} />, title: "Authorized Product Access" },
-    { icon: <TrendingUp size={32} />, title: "Sales Support" },
-    { icon: <Target size={32} />, title: "Marketing Support" },
-    { icon: <BookOpen size={32} />, title: "Technical Training" },
-    { icon: <Briefcase size={32} />, title: "Project Assistance" },
-    { icon: <Users size={32} />, title: "Lead Referrals" },
-    { icon: <Headset size={32} />, title: "Priority Support" },
-    { icon: <ShieldCheck size={32} />, title: "Business Development" }
+    { icon: <TrendingUp size={32} />, title: "Additional Revenue Stream", text: "Generate a new income source from every charging session at your location." },
+    { icon: <Users size={32} />, title: "Increased Customer Traffic", text: "Attract EV drivers who spend time and money while their vehicles charge." },
+    { icon: <Wrench size={32} />, title: "Complete Technical Support", text: "Our team provides full technical guidance from setup to daily operation." },
+    { icon: <LifeBuoy size={32} />, title: "Installation & Maintenance", text: "We assist with professional installation and ongoing maintenance." },
+    { icon: <Megaphone size={32} />, title: "Marketing & Promotional Support", text: "Benefit from joint marketing and promotion of your charging location." },
+    { icon: <LineChart size={32} />, title: "Long-Term Business Growth", text: "Position your business at the centre of Pakistan's growing EV economy." },
   ];
 
-  const idealTypes = [
-    "Electrical Contractors",
-    "Solar Companies",
-    "Engineering Firms",
-    "Technology Integrators",
-    "Infrastructure Companies",
-    "EV Businesses",
-    "Energy Consultants",
-    "Facility Management"
+  const partnerTypes = [
+    "Fuel Stations", "Shopping Malls", "Hotels", "Restaurants", "Commercial Buildings",
+    "Real Estate Developers", "Corporate Offices", "Parking Facilities",
+    "Educational Institutions", "Government & Private Organizations",
+  ];
+
+  const steps = [
+    { icon: <ClipboardList size={26} />, title: "Submit Application", text: "Share your details and location through our partnership form." },
+    { icon: <MapPinned size={26} />, title: "Location Assessment", text: "Our team evaluates your site for the right charging setup." },
+    { icon: <CheckCircle2 size={26} />, title: "Partnership Approval", text: "We finalise the partnership terms and agreement." },
+    { icon: <BatteryCharging size={26} />, title: "Installation & Commissioning", text: "Chargers are professionally installed and commissioned." },
+    { icon: <Rocket size={26} />, title: "Launch & Ongoing Support", text: "Go live with continuous technical and operational support." },
   ];
 
   return (
     <main className={styles.page}>
-      
+
       {/* 1. HERO SECTION */}
       <section className={styles.hero}>
-        <div className={styles.heroOverlay} />
+        <HeroSlideshow images={partnerImages} priority />
         <div className={styles.heroContainer}>
-          <motion.div 
+          <motion.div
             className={styles.heroContent}
             initial="hidden"
             animate="visible"
             variants={fadeUpVariant}
           >
-            <AnimatedHeroTitle text="Become A CITA EV Charging Partner" className={styles.heroTitle} />
+            <span className={styles.eyebrow}>Become a Partner</span>
+            <AnimatedHeroTitle text="Powering Pakistan's EV Future Together" className={styles.heroTitle} />
             <p className={styles.heroSubtitle}>
-              Join our growing dealer and partner network across Pakistan.
+              At CITA EV, Superfast EV Charger, and BlueOcean, we believe the future of transportation is
+              electric. Join us in building a nationwide EV charging ecosystem.
             </p>
+            <a href="#apply" className={styles.heroCta}>Become a Partner Today</a>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className={styles.heroFormCard}
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -79,12 +84,9 @@ export default function PartnerPage() {
                 <input type="tel" placeholder="Phone Number" className={styles.formInput} required />
               </div>
               <div className={styles.formGroup}>
-                <select className={styles.formSelect} required>
-                  <option value="" disabled selected>Business Type</option>
-                  <option value="distributor">Distributor</option>
-                  <option value="reseller">Reseller</option>
-                  <option value="installer">Installer</option>
-                  <option value="strategic">Strategic Partner</option>
+                <select className={styles.formSelect} required defaultValue="">
+                  <option value="" disabled>Business Type</option>
+                  {partnerTypes.map((t, i) => <option key={i} value={t}>{t}</option>)}
                 </select>
               </div>
               <button type="submit" className={styles.submitBtn}>Submit Details</button>
@@ -93,101 +95,135 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      {/* 2. PARTNER NETWORK INTRO */}
+      {/* 2. INTRO */}
       <section className={styles.introSection}>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeUpVariant}
-        >
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}>
           <h2 className={styles.sectionTitle}>Building Pakistan&apos;s EV Charging Ecosystem</h2>
           <p className={styles.sectionSubtitle}>
-            Through partnerships with installers, consultants, contractors and technology providers, CITA EV Chargers Pakistan aims to accelerate EV infrastructure deployment nationwide.
+            As EV adoption continues to grow, the demand for reliable charging infrastructure is increasing
+            across Pakistan. We are actively expanding our charging network and inviting businesses, property
+            owners, investors, and strategic partners to join us. Together, we can create a cleaner, smarter,
+            and more sustainable future.
           </p>
         </motion.div>
       </section>
 
-      {/* 3. DEALER BENEFITS */}
+      {/* 3. PARTNER GALLERY CAROUSEL */}
+      <section className={styles.gallerySection}>
+        <motion.div className={styles.gallerySectionInner} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
+          <h2 className={styles.sectionTitle}>Our Partner Network in Action</h2>
+          <p className={styles.sectionSubtitle} style={{ maxWidth: "760px", margin: "0 auto 40px" }}>
+            A glimpse of CITA EV charging locations and partners powering electric mobility across Pakistan.
+          </p>
+          <Carousel images={partnerImages} perView={3} alt="CITA EV partner location" />
+        </motion.div>
+      </section>
+
+      {/* 4. WHY PARTNER + WHAT WE OFFER */}
+      <section className={styles.introSection}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
+          <h2 className={styles.sectionTitle}>Why Partner With Us?</h2>
+          <p className={styles.sectionSubtitle}>
+            Partnering with us means becoming part of one of Pakistan&apos;s emerging EV charging networks. We
+            provide the technology, expertise, and support needed to establish successful charging locations
+            while creating new revenue opportunities for our partners.
+          </p>
+          <div className={styles.offerRow}>
+            <div className={styles.offerCard}>
+              <Zap size={30} className={styles.offerIcon} />
+              <h3>AC Charging Solutions</h3>
+              <p>Smart 7kW to 44kW AC chargers for homes, workplaces and commercial sites.</p>
+            </div>
+            <div className={styles.offerCard}>
+              <BatteryCharging size={30} className={styles.offerIcon} />
+              <h3>DC Fast Charging Solutions</h3>
+              <p>30kW to 480kW DC fast chargers for highways, fleets and public hubs.</p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* 5. PARTNERSHIP BENEFITS */}
       <section className={styles.benefitsSection}>
         <div className={styles.benefitsContainer}>
-          <motion.div
-            className={styles.textCenter}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUpVariant}
-            style={{ textAlign: 'center' }}
-          >
-            <h2 className={styles.sectionTitle}>Dealer Benefits</h2>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} style={{ textAlign: "center" }}>
+            <h2 className={styles.sectionTitle}>Partnership Benefits</h2>
           </motion.div>
-          
-          <motion.div 
-            className={styles.benefitsGrid}
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-          >
+          <motion.div className={styles.benefitsGrid} variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
             {benefits.map((benefit, index) => (
               <motion.div key={index} className={styles.benefitCard} variants={fadeUpVariant}>
-                <div className={styles.iconWrapper}>
-                  {benefit.icon}
-                </div>
+                <div className={styles.iconWrapper}>{benefit.icon}</div>
                 <h3>{benefit.title}</h3>
+                <p className={styles.benefitText}>{benefit.text}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* 4. IDEAL DEALER TYPES */}
+      {/* 6. WHO CAN PARTNER */}
       <section className={styles.idealSection}>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUpVariant}
-          style={{ textAlign: 'center' }}
-        >
-          <h2 className={styles.sectionTitle}>Ideal Dealer Types</h2>
-          <p className={styles.sectionSubtitle} style={{ maxWidth: '800px', margin: '0 auto' }}>
-            We are looking to partner with specialized companies to build a robust charging infrastructure.
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} style={{ textAlign: "center" }}>
+          <h2 className={styles.sectionTitle}>Who Can Partner With Us?</h2>
+          <p className={styles.sectionSubtitle} style={{ maxWidth: "800px", margin: "0 auto" }}>
+            We welcome a wide range of businesses and organizations across Pakistan to join our network.
           </p>
-          
           <div className={styles.idealGrid}>
-            {idealTypes.map((type, index) => (
-              <div key={index} className={styles.idealTag}>
-                {type}
-              </div>
+            {partnerTypes.map((type, index) => (
+              <div key={index} className={styles.idealTag}>{type}</div>
             ))}
           </div>
         </motion.div>
       </section>
 
-      {/* 5. MAIN DEALER APPLICATION FORM */}
+      {/* 7. HOW IT WORKS */}
+      <section className={styles.stepsSection}>
+        <div className={styles.benefitsContainer}>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} style={{ textAlign: "center" }}>
+            <h2 className={styles.sectionTitle}>How the Partnership Works</h2>
+          </motion.div>
+          <motion.div className={styles.stepsGrid} variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+            {steps.map((step, index) => (
+              <motion.div key={index} className={styles.stepCard} variants={fadeUpVariant}>
+                <div className={styles.stepNumber}>{index + 1}</div>
+                <div className={styles.stepIcon}>{step.icon}</div>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 8. WHY BLUEOCEAN + VISION */}
+      <section className={styles.introSection}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
+          <h2 className={styles.sectionTitle}>Why BlueOcean?</h2>
+          <p className={styles.sectionSubtitle}>
+            <span className={styles.blueCompany}>BlueOcean</span> drives strategic growth, business development,
+            and network expansion, helping accelerate EV adoption across Pakistan. Our vision is to create
+            Pakistan&apos;s most reliable, accessible, and future-ready EV charging network.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* 9. MAIN APPLICATION FORM */}
       <section className={styles.formSection} id="apply">
-        <motion.div
-          className={styles.mainFormContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUpVariant}
-        >
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h2 className={styles.sectionTitle}>Dealer Application Form</h2>
-            <p className={styles.sectionSubtitle}>Complete the form below to apply for our partnership program.</p>
+        <motion.div className={styles.mainFormContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
+          <div style={{ textAlign: "center", marginBottom: "40px" }}>
+            <h2 className={styles.sectionTitle}>Ready to Grow With Us?</h2>
+            <p className={styles.sectionSubtitle}>
+              Join CITA EV, Superfast EV Charger, and BlueOcean in shaping the future of electric mobility.
+              Complete the form below and our team will get in touch.
+            </p>
           </div>
 
           <form onSubmit={(e) => e.preventDefault()} className={styles.formGrid}>
             <div className={styles.formGroup}>
-              <input type="text" placeholder="Company Name *" className={styles.formInput} required />
+              <input type="text" placeholder="Company / Business Name *" className={styles.formInput} required />
             </div>
             <div className={styles.formGroup}>
               <input type="text" placeholder="Contact Person *" className={styles.formInput} required />
-            </div>
-            <div className={styles.formGroup}>
-              <input type="text" placeholder="Designation" className={styles.formInput} />
             </div>
             <div className={styles.formGroup}>
               <input type="tel" placeholder="Phone Number *" className={styles.formInput} required />
@@ -201,42 +237,22 @@ export default function PartnerPage() {
             <div className={styles.formGroup}>
               <select className={styles.formSelect} required defaultValue="">
                 <option value="" disabled>Business Type *</option>
-                {idealTypes.map((type, i) => <option key={i} value={type}>{type}</option>)}
+                {partnerTypes.map((type, i) => <option key={i} value={type}>{type}</option>)}
               </select>
             </div>
-            <div className={styles.formGroup}>
-              <input type="number" placeholder="Years In Operation" className={styles.formInput} />
+            <div className={styles.formGroup} style={{ gridColumn: "1 / -1" }}>
+              <input type="text" placeholder="Proposed Location / Address" className={styles.formInput} />
             </div>
-            <div className={styles.formGroup}>
-              <input type="url" placeholder="Company Website" className={styles.formInput} />
+            <div className={styles.formGroup} style={{ gridColumn: "1 / -1" }}>
+              <textarea placeholder="Tell us about your location and requirement" className={styles.formTextarea}></textarea>
             </div>
-            <div className={styles.formGroup}>
-              <input type="text" placeholder="Areas Served" className={styles.formInput} />
-            </div>
-            <div className={styles.formGroup}>
-              <input type="number" placeholder="Technical Team Size" className={styles.formInput} />
-            </div>
-            <div className={styles.formGroup}>
-              <input type="number" placeholder="Sales Team Size" className={styles.formInput} />
-            </div>
-            <div className={styles.formGroup} style={{ gridColumn: '1 / -1' }}>
-              <select className={styles.formSelect} defaultValue="">
-                <option value="" disabled>Annual Revenue Range</option>
-                <option value="under_10m">Under 10M PKR</option>
-                <option value="10m_50m">10M - 50M PKR</option>
-                <option value="50m_100m">50M - 100M PKR</option>
-                <option value="over_100m">Over 100M PKR</option>
-              </select>
-            </div>
-            <div className={styles.formGroup} style={{ gridColumn: '1 / -1' }}>
-              <textarea placeholder="Additional Comments" className={styles.formTextarea}></textarea>
-            </div>
-            <div className={styles.formGroup} style={{ gridColumn: '1 / -1', marginTop: '20px' }}>
-              <button type="submit" className={styles.submitBtn} style={{ padding: '20px', fontSize: '1.1rem' }}>
+            <div className={styles.formGroup} style={{ gridColumn: "1 / -1", marginTop: "20px" }}>
+              <button type="submit" className={styles.submitBtn} style={{ padding: "20px", fontSize: "1.1rem" }}>
                 Submit Application
               </button>
             </div>
           </form>
+          <p className={styles.formFootnote}>Let&apos;s power the future together.</p>
         </motion.div>
       </section>
 
