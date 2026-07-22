@@ -94,7 +94,7 @@ export const Header = () => {
 
         {/* Desktop Actions */}
         <div className={styles.actions}>
-          <Button variant={scrolled ? "outline" : "outlineWhite"} href="https://wa.me/923007929616">
+          <Button variant="outline" href="https://wa.me/923007929616">
             WhatsApp
           </Button>
           <Button variant="primary" href="/contact">
